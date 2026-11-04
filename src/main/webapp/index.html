@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Sans:wght@400;600&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+<title>Taller de celulares | Nueva consulta</title>
+</head>
+<body>
+	<header class="barra">
+		<div>
+			<strong>Taller de celulares</strong>
+			<nav>
+				<a href="index.html" aria-current="page">Nueva consulta</a><a
+					href="consultar.html">Ver mi reparación</a>
+			</nav>
+		</div>
+	</header>
+	<main>
+		<div class="portada">
+			<section class="intro">
+				<h1>Contanos qué le pasa a tu celular</h1>
+				<p>Completá el formulario y quedará registrado tu caso. Cuando
+					traigas el equipo al local, el técnico lo revisa y cargamos el
+					diagnóstico.</p>
+				<p>Después podés seguir el estado de la reparación desde esta
+					página, sin llamar al taller.</p>
+			</section>
+
+			<section class="panel">
+				<!-- Backend: action = Servlet que guarda cliente + consulta (estado inicial "Pendiente") -->
+				<form id="form-consulta" action="registrar-consulta" method="post"
+					novalidate>
+					<h2>Nueva consulta</h2>
+
+					<div>
+						<label for="nombre">Nombre</label> <input id="nombre"
+							name="nombre" type="text" maxlength="100" autocomplete="name"
+							required>
+						<p class="error-campo" role="alert"></p>
+					</div>
+
+					<div>
+						<label for="telefono">Teléfono</label> <input id="telefono"
+							name="telefono" type="tel" inputmode="tel" maxlength="25"
+							autocomplete="tel" data-telefono required>
+						<p class="ayuda">Podés usar guiones o el prefijo +54. Lo
+							usarás después para consultar tu reparación.</p>
+						<p class="error-campo" role="alert"></p>
+					</div>
+
+					<div>
+						<label for="modelo">Modelo del celular</label> <input id="modelo"
+							name="modelo" type="text" maxlength="100"
+							placeholder="Ej.: Samsung Galaxy A32" required>
+						<p class="error-campo" role="alert"></p>
+					</div>
+
+					<div>
+						<label for="descripcion">Descripción del problema</label>
+						<textarea id="descripcion" name="descripcion" maxlength="500"
+							placeholder="Ej.: La pantalla quedó negra después de una caída"
+							required></textarea>
+						<p class="error-campo" role="alert"></p>
+					</div>
+
+					<button class="boton" type="submit">Enviar consulta</button>
+				</form>
+			</section>
+		</div>
+	</main>
+	<script src="js/validaciones.js"></script>
+</body>
+</html>

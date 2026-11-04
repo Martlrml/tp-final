@@ -1,0 +1,686 @@
+/* Taller de celulares - estilos compartidos */
+:root {
+	--fondo: #EDF0EE;
+	--superficie: #FFFFFF;
+	--tinta: #16211E;
+	--tinta-suave: #5A6A65;
+	--placa: #0E5A4A;
+	--placa-oscura: #093C32;
+	--cobre: #E8A33D;
+	--linea: #CBD5D1;
+	--ok: #1F7A4D;
+	--aviso: #9A6A00;
+	--error: #B3372B;
+	--fuente-titulo: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+	--fuente-texto: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+}
+
+* {
+	box-sizing: border-box
+}
+
+body {
+	margin: 0;
+	background: var(--fondo);
+	color: var(--tinta);
+	font: 400 1rem/1.55 var( --fuente-texto)
+}
+
+h1, h2, h3 {
+	font-family: var(--fuente-titulo);
+	line-height: 1.15;
+	margin: 0 0 .5rem
+}
+
+h1 {
+	font-size: clamp(2rem, 5vw, 3.2rem);
+	font-weight: 800
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 700
+}
+
+h3 {
+	font-size: 1.1rem;
+	font-weight: 600
+}
+
+p {
+	margin: 0 0 1rem;
+	max-width: 62ch
+}
+
+a {
+	color: var(--placa)
+}
+
+:focus-visible {
+	outline: 3px solid var(--cobre);
+	outline-offset: 2px
+}
+
+.barra {
+	background: var(--placa-oscura);
+	color: #fff
+}
+
+.barra div {
+	max-width: 1100px;
+	margin: auto;
+	padding: .9rem 1.25rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: wrap
+}
+
+.barra strong {
+	font-family: var(--fuente-titulo);
+	font-size: 1.2rem
+}
+
+.barra nav a {
+	color: #fff;
+	margin-left: 1.25rem;
+	text-decoration: none;
+	padding-bottom: 2px;
+	border-bottom: 2px solid transparent
+}
+
+.barra nav a:hover, .barra nav a[aria-current="page"] {
+	border-bottom-color: var(--cobre)
+}
+
+main {
+	max-width: 1100px;
+	margin: auto;
+	padding: 2rem 1.25rem 4rem
+}
+
+.portada {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2.5rem;
+	align-items: start
+}
+
+@media ( max-width :800px) {
+	.portada {
+		grid-template-columns: 1fr
+	}
+}
+
+.portada .intro p {
+	color: var(--tinta-suave)
+}
+
+.panel {
+	background: var(--superficie);
+	border: 1px solid var(--linea);
+	border-radius: 10px;
+	padding: 1.5rem
+}
+
+.panel+.panel {
+	margin-top: 1.25rem
+}
+
+label {
+	display: block;
+	font-weight: 600;
+	margin: 1rem 0 .3rem
+}
+
+input, select, textarea {
+	width: 100%;
+	padding: .65rem .75rem;
+	border: 1.5px solid var(--linea);
+	border-radius: 6px;
+	font: inherit;
+	background: #fff;
+	color: inherit
+}
+
+input:focus, select:focus, textarea:focus {
+	border-color: var(--placa)
+}
+
+textarea {
+	min-height: 110px;
+	resize: vertical
+}
+
+.ayuda {
+	font-size: .85rem;
+	color: var(--tinta-suave);
+	margin: .25rem 0 0
+}
+
+.error-campo {
+	font-size: .85rem;
+	color: var(--error);
+	margin: .25rem 0 0;
+	min-height: 1.2em
+}
+
+input.invalido, textarea.invalido {
+	border-color: var(--error)
+}
+
+.boton {
+	display: inline-block;
+	margin-top: 1.25rem;
+	padding: .7rem 1.3rem;
+	border: 0;
+	border-radius: 6px;
+	background: var(--placa);
+	color: #fff;
+	font: 600 1rem var(--fuente-texto);
+	cursor: pointer;
+	text-decoration: none
+}
+
+.boton:hover {
+	background: var(--placa-oscura)
+}
+
+.boton.secundario {
+	background: transparent;
+	color: var(--placa);
+	border: 1.5px solid var(--placa)
+}
+
+.boton.peligro {
+	background: transparent;
+	color: var(--error);
+	border: 1.5px solid var(--error);
+	margin-top: 0
+}
+
+.boton.peligro:hover {
+	background: var(--error);
+	color: #fff
+}
+
+.aviso {
+	padding: .8rem 1rem;
+	border-left: 4px solid var(--ok);
+	background: #E5F2EA;
+	border-radius: 4px;
+	margin-bottom: 1rem
+}
+
+.aviso.error {
+	border-color: var(--error);
+	background: #F8E4E1
+}
+
+/* Estados */
+.estado {
+	display: inline-block;
+	padding: .15rem .7rem;
+	border-radius: 99px;
+	font-size: .85rem;
+	font-weight: 600;
+	border: 1.5px solid currentColor
+}
+
+.estado.pendiente {
+	color: var(--aviso)
+}
+
+.estado.revision, .estado.reparacion {
+	color: var(--placa)
+}
+
+.estado.listo {
+	color: var(--ok);
+	background: #E5F2EA
+}
+
+.estado.entregado {
+	color: var(--tinta-suave)
+}
+
+/* Tarjetas de consulta (cliente) */
+.consulta-cabecera {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-bottom: .75rem
+}
+
+.datos {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: .75rem 1.5rem;
+	margin: 1rem 0
+}
+
+.datos dt {
+	font-size: .85rem;
+	color: var(--tinta-suave)
+}
+
+.datos dd {
+	margin: 0;
+	font-weight: 600
+}
+
+.candado {
+	display: flex;
+	gap: .75rem;
+	align-items: center;
+	padding: 1rem;
+	border: 2px dashed var(--cobre);
+	border-radius: 8px;
+	background: #FFF7E8
+}
+
+.candado svg {
+	flex: none
+}
+
+.detalle-abierto {
+	border-top: 2px solid var(--placa);
+	padding-top: 1rem;
+	margin-top: 1rem
+}
+
+.acciones {
+	margin-top: 1.25rem;
+	display: flex;
+	gap: .75rem;
+	flex-wrap: wrap
+}
+
+/* Tabla admin */
+.tabla-scroll {
+	overflow-x: auto
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	min-width: 720px
+}
+
+th, td {
+	text-align: left;
+	padding: .7rem .75rem;
+	border-bottom: 1px solid var(--linea);
+	vertical-align: middle
+}
+
+th {
+	font-size: .85rem;
+	color: var(--tinta-suave);
+	font-weight: 600
+}
+
+tr:hover td {
+	background: #F5F8F6
+}
+
+.fila-form {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 0 1.5rem
+}
+
+.fila-form .ancho {
+	grid-column: 1/-1
+}
+
+/* Interruptor (candado digital) */
+.interruptor {
+	display: flex;
+	align-items: center;
+	gap: .75rem;
+	margin-top: 1.25rem;
+	padding: 1rem;
+	border: 1.5px solid var(--linea);
+	border-radius: 8px
+}
+
+.interruptor input {
+	position: absolute;
+	opacity: 0;
+	width: 1px;
+	height: 1px
+}
+
+.interruptor .pista {
+	flex: none;
+	width: 52px;
+	height: 28px;
+	border-radius: 99px;
+	background: var(--linea);
+	position: relative;
+	transition: background .2s
+}
+
+.interruptor .pista::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: #fff;
+	transition: transform .2s
+}
+
+.interruptor input:checked+.pista {
+	background: var(--ok)
+}
+
+.interruptor input:checked+.pista::after {
+	transform: translateX(24px)
+}
+
+.interruptor input:focus-visible+.pista {
+	outline: 3px solid var(--cobre);
+	outline-offset: 2px
+}
+
+.interruptor label {
+	margin: 0;
+	cursor: pointer
+}
+
+.vacio {
+	text-align: center;
+	color: var(--tinta-suave);
+	padding: 2rem 1rem
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	* {
+		transition: none !important
+	}
+}
+
+/* ===== Animaciones (las dispara js/animaciones.js) ===== */
+html {
+	scroll-behavior: smooth
+}
+
+/* Entrada de la página: solo si hay JS, para no ocultar contenido si falla */
+@
+keyframes entrada {
+	from {opacity: 0;
+	transform: translateY(14px)
+}
+
+to {
+	opacity: 1;
+	transform: none
+}
+
+}
+.js [data-entrada] {
+	opacity: 0
+}
+
+.js [data-entrada].visible {
+	animation: entrada .6s cubic-bezier(.2, .7, .2, 1) forwards;
+	animation-delay: var(--retardo, 0s)
+}
+
+/* Candado cerrado: se sacude */
+@
+keyframes sacudir { 0%,100%{
+	transform: translateX(0)
+}
+
+20
+%
+{
+transform
+:
+translateX(
+-6px
+)
+rotate(
+-1deg
+)
+}
+40
+%
+{
+transform
+:
+translateX(
+6px
+)
+rotate(
+1deg
+)
+}
+60
+%
+{
+transform
+:
+translateX(
+-4px
+)
+}
+80
+%
+{
+transform
+:
+translateX(
+4px
+)
+}
+}
+.candado {
+	cursor: pointer
+}
+
+.candado.sacudir {
+	animation: sacudir .5s ease
+}
+
+/* Detalle desbloqueado: se revela de arriba hacia abajo */
+.js .detalle-abierto {
+	clip-path: inset(0 0 100% 0);
+	transition: clip-path .8s cubic-bezier(.2, .7, .2, 1)
+}
+
+.js .detalle-abierto.abierto {
+	clip-path: inset(0 0 -20px 0)
+}
+
+/* Barra de progreso de la reparación */
+.progreso {
+	list-style: none;
+	display: flex;
+	padding: 0;
+	margin: 1.25rem 0 .5rem
+}
+
+.progreso li {
+	flex: 1;
+	position: relative;
+	text-align: center;
+	font-size: .78rem;
+	color: var(--tinta-suave);
+	padding-top: 1.9rem;
+	transition: color .3s
+}
+
+.progreso li::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 18px;
+	height: 18px;
+	margin-left: -9px;
+	border-radius: 50%;
+	background: var(--linea);
+	z-index: 1;
+	transition: background .3s, transform .3s
+}
+
+.progreso li::after {
+	content: "";
+	position: absolute;
+	top: 8px;
+	left: -50%;
+	width: 100%;
+	height: 2px;
+	background: var(--linea);
+	transition: background .3s
+}
+
+.progreso li:first-child::after {
+	display: none
+}
+
+.progreso li.hecho {
+	color: var(--tinta);
+	font-weight: 600
+}
+
+.progreso li.hecho::before, .progreso li.hecho::after {
+	background: var(--placa)
+}
+
+@
+keyframes pulso { 0%{
+	box-shadow: 0 0 0 0 rgba(14, 90, 74, .5)
+}
+
+100
+%
+{
+box-shadow
+:
+0
+0
+0
+12px
+rgba(
+14
+,
+90
+,
+74
+,
+0
+)
+}
+}
+.progreso li.actual::before {
+	transform: scale(1.25);
+	animation: pulso 1.2s ease-out 2
+}
+
+/* Interruptor del candado: el arco se abre al activarlo */
+.icono-candado {
+	flex: none;
+	color: var(--aviso);
+	transition: color .3s
+}
+
+.icono-candado .arco {
+	transform-origin: 8px 11px;
+	transition: transform .35s cubic-bezier(.3, 1.4, .5, 1)
+}
+
+.interruptor input:checked ~ .icono-candado {
+	color: var(--ok)
+}
+
+.interruptor input:checked ~ .icono-candado .arco {
+	transform: rotate(-25deg)
+}
+
+/* Botón enviando */
+@
+keyframes giro {
+	to {transform: rotate(360deg)
+}
+
+}
+.boton.cargando {
+	position: relative;
+	color: transparent;
+	cursor: progress
+}
+
+.boton.cargando::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 18px;
+	height: 18px;
+	margin: -9px 0 0 -9px;
+	border: 2.5px solid #fff;
+	border-top-color: transparent;
+	border-radius: 50%;
+	animation: giro .7s linear infinite
+}
+
+.boton.peligro.cargando::after {
+	border-color: var(--error);
+	border-top-color: transparent
+}
+
+/* Al ir a "Revisar" en el panel, el formulario se resalta */
+@
+keyframes resaltar { 0%{
+	box-shadow: 0 0 0 0 rgba(232, 163, 61, .9)
+}
+
+100
+%
+{
+box-shadow
+:
+0
+0
+0
+14px
+rgba(
+232
+,
+163
+,
+61
+,
+0
+)
+}
+}
+#diagnostico:target {
+	animation: resaltar 1.2s ease-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	html {
+		scroll-behavior: auto
+	}
+	*, *::before, *::after {
+		animation: none !important;
+		transition: none !important
+	}
+	.js [data-entrada] {
+		opacity: 1
+	}
+	.js .detalle-abierto {
+		clip-path: none
+	}
+}
