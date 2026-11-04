@@ -1,6 +1,6 @@
 package com.app.persistencia;
 
-import com.app.logica.Consulta;
+import com.app.logica.Consultas;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -25,7 +25,7 @@ public class ConsultaJpaController {
 	}
 
 	// Método para guardar una consulta en la base de datos.
-	public void crear(Consulta consulta) {
+	public void crear(Consultas consulta) {
 		EntityManager em = null;
 		try {
 			// Abrimos la conexión (pedimos un empleado).

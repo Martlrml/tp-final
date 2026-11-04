@@ -1,12 +1,10 @@
 package com.app.persistencia;
 
-import java.util.List;
+import com.app.logica.Cliente;
+import com.app.logica.Consultas;
 
 import jakarta.persistence.EntityManager; // administra las operaciones con las entidades
 import jakarta.persistence.EntityTransaction; // permite confirma como cancelar cambios 
-
-import com.app.logica.Consulta;
-import com.app.logica.Cliente;
 
 public class ControladoraPersistencia {
 	// Artista: Creamos una instancia del controlador que sabe cómo hablar con la
@@ -19,7 +17,7 @@ public class ControladoraPersistencia {
 	ConsultaJpaController consultaJpa = new ConsultaJpaController();
 
 	// Este método es el que se usa desde otras capas para crear un ARTISTA
-	public void crearConsulta(Cliente cliente, Consulta consulta) {
+	public void crearConsultas(Cliente cliente, Consultas consulta) {
 		
 		  EntityManager em = clienteJpa.getEntityManager(); // utilizamos lo que tenemos en el clientejpa
 

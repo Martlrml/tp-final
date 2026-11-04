@@ -6,7 +6,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import com.app.logica.Cliente;
-import com.app.logica.Consulta;
+import com.app.logica.Consultas;
 import com.app.logica.ControladoraLogica;
 
 import jakarta.servlet.ServletException;
@@ -36,11 +36,11 @@ public class SvCrearConsulta extends HttpServlet {
 			// Se usa la fecha actual para cumplir la validación de la lógica.
 			Cliente cliente = new Cliente(nombre, telefono);
 
-			Consulta consulta = new Consulta(modelo, descripcion, cliente);
+			Consultas consulta = new Consultas(modelo, descripcion, cliente);
 			
-			controladora.crearConsulta(cliente, consulta);
+			controladora.crearConsultas(cliente, consulta);
 
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			response.sendRedirect(request.getContextPath() + "/index.html");
 
 		}
 		catch (Exception e) {
@@ -48,7 +48,7 @@ public class SvCrearConsulta extends HttpServlet {
 
 		    msg = URLEncoder.encode(msg, StandardCharsets.UTF_8);
 
-		    response.sendRedirect(request.getContextPath() + "/index.jsp?error=" + msg);
+		    response.sendRedirect(request.getContextPath() + "/index.html?error=" + msg);
 		}
 	}
 }

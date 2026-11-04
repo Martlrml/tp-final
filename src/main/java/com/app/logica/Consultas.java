@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
-public class Consulta implements Serializable {
+public class Consultas implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,17 +39,17 @@ public class Consulta implements Serializable {
 												// automaticamente y se lo pasa al atributo
 	}
 
-	public Consulta() {
+	public Consultas() {
 		super();
 	}
 
-	public Consulta(String modelo_Celular, String descripcion_Problema, Cliente cliente) {
+	public Consultas(String modelo_Celular, String descripcion_Problema, Cliente cliente) {
 		this.Modelo_Celular = modelo_Celular;
 		this.Descripcion_Problema = descripcion_Problema;
 		this.cliente = cliente;
 	}
 
-	public Consulta(String estado, String respuesta_Posible, LocalDateTime fecha_registro,
+	public Consultas(String estado, String respuesta_Posible, LocalDateTime fecha_registro,
 			String tiempo_estimado_entrega, String problema_Real, double costo, String repuesto_Utilizados,
 			boolean mostrar_detalle) {
 		this.estado = estado;
