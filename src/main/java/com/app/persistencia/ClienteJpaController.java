@@ -49,73 +49,59 @@ public class ClienteJpaController {
 		}
 	}
 
+	public Cliente BuscarTelefono(String telefono) {
+
+		EntityManager em = getEntityManager(); 
+
+		try {
+
+			List<Cliente> clientes = em       // hacemos un consulta donde el telefono debe ser al que ingreos el cliente
+					.createQuery("SELECT c FROM Cliente c WHERE c.telefono = :telefono", Cliente.class) 
+					.setParameter("telefono", telefono).getResultList(); // el dato que tiene :telefono que es el numero ingresado se lo pasa al "telefono"
+// .getResultList() devuelve los cliente en forma de lista 	 
+			
+			if (clientes.isEmpty()) {
+				return null;
+			}
+
+			return clientes.get(0);
+
+		} finally {
+			em.close();
+		}
+	}
+
 	/*
-	// BUSCAR UNO: busca un artista por su id.
-	// No hace falta transacción porque no modifica nada en la base.
-	public Artista buscarUno(int id) {
-		EntityManager em = getEntityManager();
-		try {
-			// find busca por clave primaria. Si no existe, devuelve null.
-			return em.find(Artista.class, id);
-		} finally {
-			em.close();
-		}
-	}
-
-	// BUSCAR TODOS: devuelve una lista con todos los artistas.
-	public List<Artista> buscarTodos() {
-		EntityManager em = getEntityManager();
-		try {
-			// Consulta JPQL: "traeme todos los objetos Artista"
-			return em.createQuery("SELECT a FROM Artista a", Artista.class).getResultList();
-		} finally {
-			em.close();
-		}
-	}
-	
-	// EDITAR: modifica un artista que ya existe en la base de datos.
-	public void editar(Artista art) {
-		EntityManager em = null;
-		try {
-			em = getEntityManager();
-
-			// Iniciamos la transacción.
-			em.getTransaction().begin();
-
-			// merge actualiza el artista en la base de datos.
-			em.merge(art);
-
-			// Confirmamos los cambios.
-			em.getTransaction().commit();
-		} finally {
-			// Cerramos la conexión.
-			if (em != null) {
-				em.close();
-			}
-		}
-	}
-
-	// ELIMINAR: borra un artista por su id.
-	public void eliminar(int id) {
-		EntityManager em = null;
-		try {
-			em = getEntityManager();
-
-			// Buscamos el artista que queremos eliminar.
-			Artista art = em.find(Artista.class, id);
-
-			// Si existe, lo eliminamos.
-			if (art != null) {
-				em.getTransaction().begin();
-				em.remove(art);
-				em.getTransaction().commit();
-			}
-		} finally {
-			// Cerramos la conexión.
-			if (em != null) {
-				em.close();
-			}
-		}
-	}
-	*/
+	 * // BUSCAR UNO: busca un artista por su id. // No hace falta transacción
+	 * porque no modifica nada en la base. public Artista buscarUno(int id) {
+	 * EntityManager em = getEntityManager(); try { // find busca por clave
+	 * primaria. Si no existe, devuelve null. return em.find(Artista.class, id); }
+	 * finally { em.close(); } }
+	 * 
+	 * // BUSCAR TODOS: devuelve una lista con todos los artistas. public
+	 * List<Artista> buscarTodos() { EntityManager em = getEntityManager(); try { //
+	 * Consulta JPQL: "traeme todos los objetos Artista" return
+	 * em.createQuery("SELECT a FROM Artista a", Artista.class).getResultList(); }
+	 * finally { em.close(); } }
+	 * 
+	 * // EDITAR: modifica un artista que ya existe en la base de datos. public void
+	 * editar(Artista art) { EntityManager em = null; try { em = getEntityManager();
+	 * 
+	 * // Iniciamos la transacción. em.getTransaction().begin();
+	 * 
+	 * // merge actualiza el artista en la base de datos. em.merge(art);
+	 * 
+	 * // Confirmamos los cambios. em.getTransaction().commit(); } finally { //
+	 * Cerramos la conexión. if (em != null) { em.close(); } } }
+	 * 
+	 * // ELIMINAR: borra un artista por su id. public void eliminar(int id) {
+	 * EntityManager em = null; try { em = getEntityManager();
+	 * 
+	 * // Buscamos el artista que queremos eliminar. Artista art =
+	 * em.find(Artista.class, id);
+	 * 
+	 * // Si existe, lo eliminamos. if (art != null) { em.getTransaction().begin();
+	 * em.remove(art); em.getTransaction().commit(); } } finally { // Cerramos la
+	 * conexión. if (em != null) { em.close(); } } }
+	 */
 }

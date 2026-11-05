@@ -23,13 +23,25 @@ public class SvListarConsulta extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<Cliente> cliente = controladora.listarCliente();
+		String telefono = request.getParameter("telefono"); // traemos el datos telefono de consultar.jsp
 
-		List<Consultas> consulta = controladora.listarConsulta();
+		// Buscamos al cliente por su teléfono.
+		Cliente cliente = controladora.BuscarClientePorTelefono(telefono);
 
-		request.setAttribute("cliente", cliente);
-		request.setAttribute("consulta", consulta);
+		if (cliente != null) {
 
-		request.getRequestDispatcher("/consultas.jsp").forward(request, response);
+			// Buscamos solamente las consultas de ese cliente.
+			List<Consultas> consulta = controladora.ListarConsultasPorCliente(cliente.getID_Cliente()); // buscamos el Id asociado al telefono del CLiente 
+
+			request.setAttribute("consulta", consulta);
+
+		} else {
+
+			// No encontramos ningún cliente con ese teléfono.
+			request.setAttribute("consulta", null);
+			request.setAttribute("error", "No encontramos consultas con ese teléfono.");
+		}
+
+		request.getRequestDispatcher("/consultar.jsp").forward(request, response);
 	}
 }

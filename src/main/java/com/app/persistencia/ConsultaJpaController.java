@@ -1,5 +1,7 @@
 package com.app.persistencia;
 
+import java.util.List;
+
 import com.app.logica.Consultas;
 
 import jakarta.persistence.EntityManager;
@@ -45,6 +47,24 @@ public class ConsultaJpaController {
 				em.close();
 			}
 		}
+	}
+	
+	public List<Consultas> BuscarIdCliente(int idCliente) {
+
+	    EntityManager em = getEntityManager();
+
+	    try {
+
+	        return em.createQuery(
+	            "SELECT c FROM Consultas c WHERE c.cliente.ID_Cliente = :idCliente",
+	            Consultas.class
+	        )
+	        .setParameter("idCliente", idCliente)
+	        .getResultList();
+
+	    } finally {
+	        em.close();
+	    }
 	}
 
 	/*
